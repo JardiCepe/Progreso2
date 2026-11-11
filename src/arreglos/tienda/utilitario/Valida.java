@@ -3,9 +3,8 @@ package arreglos.tienda.utilitario;
 import java.util.Scanner;
 
 public class Valida {
-    private static Scanner sc = new Scanner(System.in);
 
-    public static String leerString(String mensaje){
+    public static String leerString(Scanner sc, String mensaje){
         String valor;
         do{
             System.out.print(mensaje + ": ");
@@ -17,7 +16,7 @@ public class Valida {
         return valor;
     }
 
-    public static int leerIntPositivo(String mensaje) {
+    public static int leerIntPositivo(Scanner sc, String mensaje) {
         int numero = 0;
         boolean datoValido = false;
         do {
@@ -38,7 +37,7 @@ public class Valida {
         return numero;
     }
 
-    public static double leerDoublePositivo(String mensaje) {
+    public static double leerDoublePositivo(Scanner sc, String mensaje) {
         double numero = 0;
         boolean datoValido = false;
 

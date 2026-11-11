@@ -4,7 +4,6 @@ import arreglos.tienda.modelo.AppStore;
 import arreglos.tienda.modelo.Juego;
 import arreglos.tienda.utilitario.Valida;
 
-import javax.swing.*;
 import java.util.Scanner;
 
 public class MainTienda {
@@ -33,7 +32,7 @@ public class MainTienda {
                 }break;
                 case 3:{
                     System.out.println("*******Buscar Juego********");
-                    String nombreBuscar = Valida.leerString("Ingrese el nombre del juego");
+                    String nombreBuscar = Valida.leerString(sc, "Ingrese el nombre del juego");
                     Juego encontrado = tienda.buscarJuego(nombreBuscar);
 
                     if(encontrado != null){
@@ -44,8 +43,8 @@ public class MainTienda {
                 }break;
                 case 4:{
                     System.out.println("*******Comprar Licencias********");
-                    String nombreCompra = Valida.leerString("Ingrese el nombre del juego");
-                    int cantidadCompra = Valida.leerIntPositivo("Ingrese la cantidad a comprar");
+                    String nombreCompra = Valida.leerString(sc, "Ingrese el nombre del juego");
+                    int cantidadCompra = Valida.leerIntPositivo(sc, "Ingrese la cantidad a comprar");
 
                     if(tienda.comprar(nombreCompra, cantidadCompra)){
                         System.out.println("¡Compra exitosa! Stock actualizado.");
@@ -55,8 +54,8 @@ public class MainTienda {
                 }break;
                 case 5:{
                     System.out.println("*******Vender Licencias********");
-                    String nombreVenta = Valida.leerString("Ingrese el nombre del juego");
-                    int cantidadVenta = Valida.leerIntPositivo("Ingrese la cantidad a vender");
+                    String nombreVenta = Valida.leerString(sc, "Ingrese el nombre del juego");
+                    int cantidadVenta = Valida.leerIntPositivo(sc, "Ingrese la cantidad a vender");
 
                     double totalVenta = tienda.vender(nombreVenta, cantidadVenta);
                     if(totalVenta > 0){
@@ -98,18 +97,18 @@ public class MainTienda {
 
     public static void ingresarJuegos(){
         System.out.println("*******Ingreso de datos********");
-        String nombre = Valida.leerString("Ingrese el nombre");
-        String categoria = Valida.leerString("Ingrese la categoria");
+        String nombre = Valida.leerString(sc, "Ingrese el nombre");
+        String categoria = Valida.leerString(sc, "Ingrese la categoria");
 
         // Aquí llamamos a tus nuevos métodos blindados contra errores
-        int tamanio = Valida.leerIntPositivo("Ingrese el tamanio (MB/GB)");
-        double precio = Valida.leerDoublePositivo("Ingrese el precio");
-        int licenciasDisponibles = Valida.leerIntPositivo("Ingrese el stock inicial");
+        int tamanio = Valida.leerIntPositivo(sc, "Ingrese el tamanio (MB/GB)");
+        double precio = Valida.leerDoublePositivo(sc, "Ingrese el precio");
+        int licenciasDisponibles = Valida.leerIntPositivo(sc, "Ingrese el stock inicial");
 
         if(tienda.agregarJuego(new Juego(nombre,categoria, tamanio, precio, licenciasDisponibles))){
-            JOptionPane.showMessageDialog(null,"El juego se ha agregado con exito!!");
+            System.out.println(">> El juego se ha agregado con exito!!");
         }else{
-            JOptionPane.showMessageDialog(null,"El juego no pudo ser agregado (memoria llena)");
+            System.out.println(">> El juego no pudo ser agregado (memoria llena)");
         }
     }
 
